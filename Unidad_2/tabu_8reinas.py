@@ -37,26 +37,26 @@ def busqueda_tabu(estado):
     movimientos = 0
 
     while costo(mejor) > 0:
-        # 1. Generar el vecindario con swaps
+        # Generar el vecindario con swaps
         vecindario = generar_vecindario(actual)
-        random.shuffle(vecindario)                    # desempate aleatorio
-        vecindario.sort(key=lambda v: costo(v[1]))    # 2. Ordenar del mejor al peor
+        random.shuffle(vecindario)                 
+        vecindario.sort(key=lambda v: costo(v[1]))    
 
-        # 3. Elegir el mejor vecino que no sea tabú (o que cumpla aspiración)
+        # Elegimos el mejor vecino que no sea tabú o que cumpla aspiración
         for swap, vecino in vecindario:
             if swap not in lista_tabu or costo(vecino) < costo(mejor):
                 break
 
-        # 4. Moverse a ese vecino (aunque sea peor que el actual)
+        # Moverse a ese vecino
         actual = vecino
         movimientos += 1
 
-        # 5. Actualizar la lista tabú (entra el swap, sale el más viejo)
+        #  Actualizar la lista tabú
         lista_tabu.append(swap)
         if len(lista_tabu) > TENENCIA:
             lista_tabu.pop(0)
 
-        # 6. Guardar la mejor solución encontrada
+        #  Guardardamos la mejor solución encontrada
         if costo(actual) < costo(mejor):
             mejor = actual
 
@@ -68,7 +68,6 @@ def imprimir_tablero(estado):
         print(" ".join("Q" if estado[col] == fila else "." for col in range(N)))
 
 
-# Estado inicial aleatorio: las filas 0..7 en orden aleatorio
 inicial = random.sample(range(N), N)
 print("Estado inicial:", inicial, " ataques:", costo(inicial))
 imprimir_tablero(inicial)
