@@ -3,9 +3,7 @@ import random
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ==============================================================================
-# 0. PARÁMETROS
-# ==============================================================================
+
 PORCENTAJE_ABASTO = 0.35       # cada tienda recibe el 35 % de su capacidad de almacenamiento
 TEMP_INICIAL = 100.0           # temperatura inicial
 FACTOR_ENFRIAMIENTO = 0.99     # cada ciclo: temperatura = temperatura * 0.99
